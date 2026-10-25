@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廠商專頁｜時尚造型事業系 校外實習媒合</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="eyebrow">Taipei City University of Science and Technology</div>
+  <h1>時尚造型事業系　校外實習媒合</h1>
+  <p>合作廠商專頁</p>
+</header>
+
+<nav class="site">
+  <ul>
+    <li><a href="../index.html">首頁</a></li>
+    <li><a href="../companies.html" class="on">合作廠商</a></li>
+    <li><a href="../process.html">媒合流程</a></li>
+    <li><a href="../results.html">媒合成果</a></li>
+    <li><a href="../join.html">廠商合作登記</a></li>
+  </ul>
+</nav>
+
+<main class="narrow">
+  <div id="view"><div class="loading">資料載入中…</div></div>
+</main>
+
+<footer class="site">
+  <div class="rule"><span>◆</span></div>
+  臺北城市科技大學　時尚造型事業系　校外實習媒合<br>
+  課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授
+</footer>
+
+<script>
+const EN = {
+  '美髮沙龍':'THE STYLIST', '美容美體':'THE THERAPIST', '醫學美容':'THE CLINIC',
+  '化妝品專櫃':'THE COUNTER', '藥妝連鎖':'THE DRUGSTORE', '時尚零售':'THE RETAILER',
+  '婚紗攝影':'THE PHOTOGRAPHER', '珠寶零售':'THE JEWELLER',
+  '頭皮養護':'THE SCALP CARE', '整體造型':'THE STYLING',
+  '美甲美睫':'THE MANICURIST'
+};
+
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function row(label, val){
+  if(!val) return '';
+  return '<dt>' + esc(label) + '</dt><dd>' + esc(val).replace(/\n/g,'<br>') + '</dd>';
+}
+
+function render(c, yearLabel){
+  const y = c.year || {};
+  const en = EN[c.category] || 'THE PARTNER';
+
+  let links = '';
+  if(y.presentationLink) links += '<a class="btn solid" href="'+esc(y.presentationLink)+'" target="_blank" rel="noopener">公司簡報</a>';
+  if(y.resumeLink)       links += '<a class="btn" href="'+esc(y.resumeLink)+'" target="_blank" rel="noopener">專用履歷表</a>';
+  if(c.website)          links += '<a class="btn" href="'+esc(c.website)+'" target="_blank" rel="noopener">公司官網</a>';
+
+  const fields =
+      row('服務類別',   c.categoryRaw || c.category)
+    + row('實習名額',   y.quota)
+    + row('學生身份',   y.employeeType)
+    + row('實習工作內容', y.jobContent)
+    + row('實習待遇',   y.salary)
+    + row('休假方式',   y.vacation)
+    + row('工作時間',   y.workHours)
+    + row('勞健保',     y.insurance)
+    + row('支援他店',   y.supportOther)
+    + row('另簽合約',   y.extraContract)
+    + row('扣款處分',   y.deduction)
+    + row('企業說明會', y.session);
+
+  document.getElementById('view').innerHTML =
+    '<div class="co-head">'
+  +   '<div class="no">' + esc(c.no) + '</div>'
+  +   '<h1>' + esc(c.brand) + '</h1>'
+  +   '<div class="corp">' + esc(c.company) + '</div>'
+  +   '<div class="en">' + esc(en) + '</div>'
+  + '</div>'
+
+  + '<div class="yearbar">'
+  +   '<span class="tag">' + esc(y.label || yearLabel) + '</span>'
+  +   '<span>本頁的招募資訊依學年度更新，卡片無須重印。</span>'
+  + '</div>'
+
+  + '<div class="card">'
+  +   '<h2 class="sec">招募資訊</h2>'
+  +   '<dl class="fields">' + fields + '</dl>'
+  +   (links ? '<div class="links">' + links + '</div>' : '')
+  + '</div>'
+
+  + (y.traits ? '<div class="card" style="margin-top:16px">'
+  +   '<div class="eyebrow">Ideal Candidate</div>'
+  +   '<h3 style="font-family:\'Noto Serif TC\',serif;font-size:1.02rem;margin:7px 0 9px">希望聘用的學生特質</h3>'
+  +   '<p class="muted">' + esc(y.traits) + '</p></div>' : '')
+
+  + (y.notes ? '<div class="card" style="margin-top:16px">'
+  +   '<div class="eyebrow">Please Note</div>'
+  +   '<h3 style="font-family:\'Noto Serif TC\',serif;font-size:1.02rem;margin:7px 0 9px">注意事項</h3>'
+  +   '<p class="muted">' + esc(y.notes) + '</p></div>' : '')
+
+  + '<div class="center" style="margin-top:26px">'
+  +   '<a class="btn" href="../companies.html">← 返回合作廠商一覽</a>'
+  + '</div>';
+
+  document.title = c.brand + '｜時尚造型事業系 校外實習媒合';
+}
+
+function notFound(id){
+  document.getElementById('view').innerHTML =
+    '<div class="card center">'
+  + '<div class="eyebrow">Not Found</div>'
+  + '<h2 style="font-family:\'Noto Serif TC\',serif;font-size:1.15rem;margin:10px 0 8px">查無此廠商資料</h2>'
+  + '<p class="muted">' + (id ? '代碼「' + esc(id) + '」' : '網址缺少廠商代碼') + '目前未在合作廠商名單中，可能為本年度未參與媒合。</p>'
+  + '<div class="links" style="justify-content:center"><a class="btn solid" href="../companies.html">查看合作廠商一覽</a></div>'
+  + '</div>';
+}
+
+const id = new URLSearchParams(location.search).get('id');
+fetch('../data/companies.json')
+  .then(r => r.json())
+  .then(d => {
+    const c = d.companies.find(x => x.id === id);
+    if(c) render(c, d.yearLabel); else notFound(id);
+  })
+  .catch(() => {
+    document.getElementById('view').innerHTML =
+      '<div class="card center"><p class="muted">資料載入失敗，請稍後再試。</p></div>';
+  });
+</script>
+</body>
+</html>

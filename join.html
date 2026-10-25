@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>廠商合作登記｜時尚造型事業系 校外實習媒合</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="eyebrow">Partner With Us</div>
+  <h1>廠商合作意願登記</h1>
+  <p>歡迎有意提供實習機會的企業填寫，全年開放受理</p>
+</header>
+
+<nav class="site">
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="companies.html">合作廠商</a></li>
+    <li><a href="process.html">媒合流程</a></li>
+    <li><a href="results.html">媒合成果</a></li>
+    <li><a href="join.html" class="on">廠商合作登記</a></li>
+  </ul>
+</nav>
+
+<main class="narrow">
+
+  <div class="card" style="margin-bottom:24px">
+    <p class="muted">
+      感謝貴公司有意提供本系學生實習機會。請填寫以下資料，送出後將由系上承辦人確認，
+      並於確認後與貴公司聯繫後續事宜。標示 <span class="req">*</span> 為必填欄位。
+    </p>
+  </div>
+
+  <div id="msg" class="msg"></div>
+
+  <form id="f" autocomplete="off">
+
+    <div class="card" style="margin-bottom:18px">
+      <h2 class="sec">公司基本資料</h2>
+      <div class="fg"><label>公司名稱（正式全名）<span class="req">*</span></label><input name="companyName" required></div>
+      <div class="fg"><label>公司品牌<span class="req">*</span></label><input name="brand" required></div>
+      <div class="fg"><label>服務類別<span class="req">*</span></label>
+        <input name="category" list="cats" required placeholder="例：美髮沙龍、醫學美容">
+        <datalist id="cats">
+          <option value="美髮沙龍"><option value="美容美體"><option value="醫學美容">
+          <option value="化妝品專櫃"><option value="藥妝連鎖"><option value="時尚零售">
+          <option value="婚紗攝影"><option value="珠寶零售"><option value="頭皮養護"><option value="整體造型">
+        </datalist>
+      </div>
+      <div class="fg"><label>公司統一編號<span class="req">*</span></label><input name="businessId" required></div>
+      <div class="fg"><label>公司地址<span class="req">*</span></label><input name="address" required></div>
+      <div class="fg"><label>公司電話</label><input name="companyPhone"></div>
+      <div class="fg"><label>公司網址</label><input name="website" type="url" placeholder="https://"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h2 class="sec">聯絡窗口</h2>
+      <div class="fg"><label>聯絡人姓名<span class="req">*</span></label><input name="contactName" required></div>
+      <div class="fg"><label>聯絡人職稱</label><input name="contactTitle"></div>
+      <div class="fg"><label>聯絡人行動電話<span class="req">*</span></label><input name="contactPhone" required></div>
+      <div class="fg"><label>電子郵件<span class="req">*</span></label><input name="email" type="email" required></div>
+      <div class="fg"><label>Line ID</label><input name="lineId"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h2 class="sec">實習條件</h2>
+      <div class="fg"><label>願提供實習名額</label><input name="quota" placeholder="例：2～3 位、不拘"></div>
+      <div class="fg"><label>學生實習期間身份</label><input name="employeeType" placeholder="例：正式員工、建教合作生"></div>
+      <div class="fg"><label>實習工作內容</label><textarea name="jobContent" rows="3" placeholder="可條列多項"></textarea></div>
+      <div class="fg"><label>實習薪資</label><input name="salary" placeholder="例：依勞基法規定起薪，另有獎金"></div>
+      <div class="fg"><label>休假方式</label><input name="vacation" placeholder="例：月休 8～10 天，符合 1 例 1 休"></div>
+      <div class="fg"><label>工作時間要求</label><input name="workHours" placeholder="例：基本班表 9 小時，內含 1 小時用餐休息"></div>
+      <div class="fg"><label>勞保、健保、就業保險與勞退</label><input name="insurance" placeholder="若為非雇傭型實習請於此說明"></div>
+      <div class="fg"><label>是否需支援他店活動</label><input name="supportOther" placeholder="例：新開幕支援"></div>
+      <div class="fg"><label>是否另與學生簽訂工作合約</label><input name="extraContract" placeholder="有／無">
+        <div class="hint">學校、企業與學生三方已有實習合約，此欄指另行簽訂者。</div></div>
+      <div class="fg"><label>實習期間扣款處分</label><input name="deduction" placeholder="若無請填「無」"></div>
+    </div>
+
+    <div class="card" style="margin-bottom:18px">
+      <h2 class="sec">企業說明會與補充資料</h2>
+      <div class="fg"><label>是否願意入班進行企業說明會</label>
+        <select name="demoWilling">
+          <option value="">— 請選擇 —</option>
+          <option value="願意">願意</option>
+          <option value="不參加">不參加，僅提供實習機會</option>
+          <option value="再討論">再與系上討論</option>
+        </select>
+        <div class="hint">說明會固定於星期四下午 13:10～15:20，入班宣講約 20～30 分鐘。</div>
+      </div>
+      <div class="fg"><label>可配合的說明會時段</label><textarea name="demoDate" rows="2" placeholder="若願意入班，請說明可配合的月份或日期，確認後將個別通知"></textarea></div>
+      <div class="fg"><label>公司簡報連結</label><input name="presentationLink" type="url" placeholder="https://"><div class="hint">將公告於本站供學生查閱。</div></div>
+      <div class="fg"><label>專用空白履歷表連結</label><input name="resumeLink" type="url" placeholder="https://"></div>
+      <div class="fg"><label>希望聘用的學生特質</label><textarea name="traits" rows="2"></textarea></div>
+      <div class="fg"><label>其他注意事項或建議</label><textarea name="notes" rows="2"></textarea></div>
+    </div>
+
+    <div style="position:absolute;left:-9999px" aria-hidden="true">
+      <label>請勿填寫此欄</label><input name="website2" tabindex="-1" autocomplete="off">
+    </div>
+
+    <div class="center">
+      <button type="submit" class="btn solid" id="sb" style="padding:12px 38px;font-size:.92rem">送出合作意願登記</button>
+      <p class="hint" style="margin-top:12px">送出後系統將寄送確認信至您填寫的電子郵件信箱。</p>
+    </div>
+  </form>
+
+  <div id="done" style="display:none">
+    <div class="card center">
+      <div class="eyebrow">Thank You</div>
+      <h2 style="font-family:'Noto Serif TC',serif;font-size:1.3rem;margin:12px 0 10px">登記完成</h2>
+      <p class="muted">感謝貴公司提供實習機會。系上承辦人確認後將盡快與您聯繫。<br>
+        如有疑問，請聯繫時尚造型事業系 洪啟穎 助理教授。</p>
+      <div class="links" style="justify-content:center;margin-top:18px">
+        <a class="btn" href="index.html">返回首頁</a>
+        <a class="btn" href="process.html">了解媒合流程</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="rule"><span>◆</span></div>
+  臺北城市科技大學　時尚造型事業系　校外實習媒合<br>
+  課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授
+</footer>
+
+<script>
+// ⚠ 部署 Apps Script 後，將下方網址替換為您的 /exec 網址
+const API_URL = '';
+
+const form = document.getElementById('f');
+const msgEl = document.getElementById('msg');
+const btn   = document.getElementById('sb');
+
+function show(text, kind){
+  msgEl.textContent = text;
+  msgEl.className = 'msg ' + kind;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  const data = {};
+  new FormData(form).forEach(function(v, k){ data[k] = String(v).trim(); });
+
+  // 防機器人：隱藏欄位被填寫即視為機器人
+  if(data.website2){ show('送出失敗，請重新整理後再試。', 'err'); return; }
+  delete data.website2;
+
+  if(!API_URL){
+    show('系統尚未完成設定，請改以電子郵件聯繫系上承辦人。', 'err');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '送出中…';
+  msgEl.className = 'msg';
+
+  try{
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'vendor_apply', data: data })
+    });
+    const json = await res.json();
+    if(json.ok){
+      form.style.display = 'none';
+      msgEl.className = 'msg';
+      document.getElementById('done').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      show('送出失敗：' + (json.error || '請稍後再試'), 'err');
+      btn.disabled = false;
+      btn.textContent = '送出合作意願登記';
+    }
+  }catch(err){
+    show('網路連線異常，請稍後再試。', 'err');
+    btn.disabled = false;
+    btn.textContent = '送出合作意願登記';
+  }
+});
+</script>
+</body>
+</html>

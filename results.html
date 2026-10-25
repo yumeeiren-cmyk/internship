@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>媒合成果｜時尚造型事業系 校外實習媒合</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.bar-label{width:210px;font-size:.8rem;text-align:right;flex-shrink:0;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink-soft);}
+.bar-track{flex:1;background:#E8E0CD;border-radius:5px;height:20px;overflow:hidden;min-width:60px;}
+.bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;
+  padding-left:8px;background:linear-gradient(90deg,var(--teal),var(--teal-soft));}
+.bar-fill span{font-size:.72rem;color:#F4EFE3;font-weight:500;}
+.bar-n{font-size:.78rem;font-weight:600;color:var(--teal);min-width:26px;}
+.pill{display:inline-block;border-radius:20px;padding:1px 9px;font-size:.73rem;margin:1px;}
+.p-ok{background:rgba(23,80,74,.12);color:var(--teal);}
+.p-alt{background:rgba(176,142,74,.16);color:#8A6D2F;}
+.p-wait{background:#EDE6D6;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="eyebrow">Matching Results</div>
+  <h1>115學年度　媒合成果</h1>
+  <p>時尚造型事業系　校外實習媒合紀錄</p>
+</header>
+
+<nav class="site">
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="companies.html">合作廠商</a></li>
+    <li><a href="process.html">媒合流程</a></li>
+    <li><a href="results.html" class="on">媒合成果</a></li>
+    <li><a href="join.html">廠商合作登記</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div id="app"><div class="loading">資料載入中…</div></div>
+</main>
+
+<footer class="site">
+  <div class="rule"><span>◆</span></div>
+  臺北城市科技大學　時尚造型事業系　校外實習媒合<br>
+  課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授
+</footer>
+
+<script>
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+const PILL = {'已媒合':'p-ok','學生自尋':'p-alt','海外實習':'p-alt','免實習':'p-alt',
+              '面試中':'p-wait','尚未聯繫':'p-wait','未媒合':'p-wait'};
+
+let D = null, TAB = 'list', CLS = '';
+
+function stats(){
+  const s = D.summary;
+  return '<div class="stats">'
+    + '<div class="stat"><b>' + s.students + '</b><span>參與學生</span></div>'
+    + '<div class="stat"><b>' + s.matched + '</b><span>媒合進合作廠商</span></div>'
+    + '<div class="stat"><b>' + s.rate + '%</b><span>媒合率</span></div>'
+    + '<div class="stat"><b>' + s.partners + '</b><span>合作廠商</span></div>'
+    + '<div class="stat"><b>' + s.wishTotal + '</b><span>志願填寫數</span></div>'
+    + '<div class="stat"><b>' + s.companiesTaking + '</b><span>實際收實習生廠商</span></div>'
+    + '</div>';
+}
+
+function tabs(){
+  const t = [['list','學生媒合名單'],['comp','廠商志願競爭'],['take','各廠商收取人數'],['stat','媒合狀態分布']];
+  return '<div class="tabs">' + t.map(function(x){
+    return '<button class="chip' + (TAB===x[0]?' on':'') + '" onclick="go(\'' + x[0] + '\')">' + x[1] + '</button>';
+  }).join('') + '</div>';
+}
+
+function viewList(){
+  const classes = [];
+  D.students.forEach(function(s){ if(s.cls && classes.indexOf(s.cls)<0) classes.push(s.cls); });
+  const filter = '<div class="filters">'
+    + [['','全部']].concat(classes.map(function(c){return [c,c];})).map(function(p){
+        return '<button class="chip' + (CLS===p[0]?' on':'') + '" onclick="setCls(\'' + p[0] + '\')">' + p[1] + '</button>';
+      }).join('') + '</div>';
+
+  const list = CLS ? D.students.filter(function(s){return s.cls===CLS;}) : D.students;
+
+  return filter
+    + '<p class="sec-note">共 ' + list.length + ' 位　｜　錄取單位為各輪面試後獲錄取之廠商，最終實習地點為學生確認後的去向。</p>'
+    + '<div style="overflow-x:auto"><table class="t"><thead><tr>'
+    + '<th>班級</th><th>學號</th><th>姓名</th><th>錄取單位</th><th>最終實習地點</th><th>狀態</th>'
+    + '</tr></thead><tbody>'
+    + list.map(function(s){
+        return '<tr>'
+          + '<td>' + esc(s.cls) + '</td><td>' + esc(s.id) + '</td>'
+          + '<td style="font-weight:500">' + esc(s.name) + '</td>'
+          + '<td>' + (s.placed.length ? s.placed.map(esc).join('<br>') : '—') + '</td>'
+          + '<td>' + (s.final.length ? s.final.map(esc).join('<br>') : '—') + '</td>'
+          + '<td><span class="pill ' + (PILL[s.status]||'p-wait') + '">' + esc(s.status) + '</span></td>'
+          + '</tr>';
+      }).join('')
+    + '</tbody></table></div>';
+}
+
+function bars(items, key, label){
+  const max = items.length ? items[0][key] : 1;
+  return '<p class="sec-note">' + label + '</p>'
+    + items.map(function(x){
+        return '<div class="bar-row">'
+          + '<div class="bar-label" title="' + esc(x.name) + '">' + esc(x.name) + '</div>'
+          + '<div class="bar-track"><div class="bar-fill" style="width:' + Math.max(4, Math.round(x[key]/max*100)) + '%">'
+          + '<span>' + x[key] + '</span></div></div>'
+          + '<div class="bar-n">' + x[key] + '</div></div>';
+      }).join('');
+}
+
+function viewComp(){
+  return bars(D.competition, 'total', '依志願填寫總人次排序，顯示前 30 家。數字為該廠商被填為志願的總人次。')
+    + '<div style="overflow-x:auto;margin-top:24px"><table class="t"><thead><tr>'
+    + '<th>廠商</th><th>第一志願</th><th>第二志願</th><th>第三志願</th><th>合計</th>'
+    + '</tr></thead><tbody>'
+    + D.competition.map(function(c){
+        return '<tr><td>' + esc(c.name) + '</td><td>' + c.w1 + '</td><td>' + c.w2 + '</td>'
+             + '<td>' + c.w3 + '</td><td style="font-weight:600;color:var(--teal)">' + c.total + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+}
+
+function viewTake(){
+  return bars(D.taking, 'n', '實際收取本系實習生的廠商與人數。');
+}
+
+function viewStat(){
+  const total = D.summary.students;
+  const items = Object.keys(D.status).map(function(k){ return {name:k, n:D.status[k]}; });
+  items.sort(function(a,b){ return b.n - a.n; });
+  return '<p class="sec-note">本報表匯出於 ' + esc(D.exported) + '，部分學生於匯出當下仍在面試程序中。</p>'
+    + bars(items, 'n', '')
+    + '<div class="card" style="margin-top:22px">'
+    + '<div class="eyebrow">Note</div>'
+    + '<h3 style="font-family:\'Noto Serif TC\',serif;font-size:1.02rem;margin:7px 0 9px">關於狀態分類</h3>'
+    + '<p class="muted">「已媒合」指透過系上媒合程序進入合作廠商實習；「學生自尋」為學生自行尋得實習單位；'
+    + '「海外實習」與「免實習」為另行核可之替代方案；「面試中」為報表匯出當下仍在面試程序者。'
+    + '共 ' + total + ' 位學生。</p></div>';
+}
+
+function render(){
+  const views = { list: viewList, comp: viewComp, take: viewTake, stat: viewStat };
+  document.getElementById('app').innerHTML =
+      '<div class="card" style="margin-bottom:26px"><p class="muted">'
+    + '本頁為 ' + esc(D.year) + ' 校外實習媒合的完整紀錄，資料匯出於 ' + esc(D.exported) + '。'
+    + '媒合採多輪進行，學生填寫志願後由系上代為投遞履歷，經面試、錄取、意願確認後完成媒合。'
+    + '</p></div>'
+    + stats() + tabs() + views[TAB]();
+}
+
+function go(t){ TAB = t; render(); }
+function setCls(c){ CLS = c; render(); }
+
+fetch('data/results.json')
+  .then(function(r){ return r.json(); })
+  .then(function(d){ D = d; render(); })
+  .catch(function(){
+    document.getElementById('app').innerHTML =
+      '<div class="card center"><p class="muted">資料載入失敗。</p></div>';
+  });
+</script>
+</body>
+</html>

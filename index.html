@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校外實習媒合｜臺北城市科技大學 時尚造型事業系</title>
+<meta name="description" content="臺北城市科技大學時尚造型事業系校外實習媒合入口，提供合作廠商資訊、媒合流程說明與廠商合作登記。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="eyebrow">Taipei City University of Science and Technology</div>
+  <h1>時尚造型事業系　校外實習媒合</h1>
+  <p>Fashion Styling &amp; Business — Internship Matching</p>
+</header>
+
+<nav class="site">
+  <ul>
+    <li><a href="index.html" class="on">首頁</a></li>
+    <li><a href="companies.html">合作廠商</a></li>
+    <li><a href="process.html">媒合流程</a></li>
+    <li><a href="results.html">媒合成果</a></li>
+    <li><a href="join.html">廠商合作登記</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="center" style="margin-bottom:30px">
+    <div class="rule"><span>◆</span></div>
+    <p class="muted" style="max-width:600px;margin:0 auto">
+      本站為時尚造型事業系校外實習的常設入口，提供合作廠商資訊、媒合制度說明與廠商合作登記。
+      實體教具「時尚實習媒合探索工具組」的廠商卡片，掃描後即連結至本站各廠商專頁。
+    </p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><b id="s-co">—</b><span>合作廠商</span></div>
+    <div class="stat"><b id="s-cat">—</b><span>產業類別</span></div>
+    <div class="stat"><b>18</b><span>週課程</span></div>
+    <div class="stat"><b>3</b><span>媒合階段</span></div>
+  </div>
+
+  <h2 class="sec">網站導覽</h2>
+  <p class="sec-note">五個常設區塊，涵蓋實習媒合的完整歷程。</p>
+
+  <div class="grid g3" style="margin-bottom:38px">
+    <a class="portal" href="companies.html">
+      <div class="num">I</div>
+      <h3>合作廠商</h3>
+      <p>歷年合作廠商一覽，每家廠商設有永久專頁，提供產業類別、實習內容與當年度招募資訊。</p>
+    </a>
+    <a class="portal" href="process.html">
+      <div class="num">II</div>
+      <h3>媒合流程</h3>
+      <p>從廠商招募、企業說明會、志願填報到三方簽約的完整時程與作業方式說明。</p>
+    </a>
+    <a class="portal" href="join.html">
+      <div class="num">III</div>
+      <h3>廠商合作登記</h3>
+      <p>有意提供實習機會的企業可隨時線上填寫合作意願單，全年開放受理。</p>
+    </a>
+    <a class="portal" href="results.html">
+      <div class="num">IV</div>
+      <h3>媒合成果</h3>
+      <p>115學年度媒合完整紀錄：學生媒合名單、廠商志願競爭統計、各廠商收取人數與媒合狀態分布。</p>
+    </a>
+    <div class="portal" style="cursor:default">
+      <div class="num">V</div>
+      <h3>歷年媒合紀錄</h3>
+      <p>歷年媒合資料封存查詢，供系所行政備查與教學研究使用。</p>
+      <span class="soon">建置中</span>
+    </div>
+  </div>
+
+  <h2 class="sec">教具與系統的連結</h2>
+  <p class="sec-note">實體卡牌與線上系統如何協同運作。</p>
+
+  <div class="grid g2" style="margin-bottom:10px">
+    <div class="card">
+      <div class="eyebrow">The Card</div>
+      <h3 style="font-family:'Noto Serif TC',serif;font-size:1.05rem;margin:7px 0 9px">共用參考卡</h3>
+      <p class="muted">每家廠商一張，印製廠商基本介紹與產業特性等長期不變的資訊。卡片不印學年度，可逐年沿用。卡面 QR 碼連結至該廠商的永久專頁。</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">The Page</div>
+      <h3 style="font-family:'Noto Serif TC',serif;font-size:1.05rem;margin:7px 0 9px">廠商永久專頁</h3>
+      <p class="muted">每家廠商擁有永不改變的網址，頁面內容則依學年度更新。同一張卡片今年掃描顯示本年度資訊，明年掃描顯示新年度資訊，卡片無須重印。</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site">
+  <div class="rule"><span>◆</span></div>
+  臺北城市科技大學　時尚造型事業系　校外實習媒合<br>
+  課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授
+</footer>
+
+<script>
+fetch('data/companies.json')
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('s-co').textContent = d.companies.length;
+    document.getElementById('s-cat').textContent =
+      new Set(d.companies.map(c => c.category)).size;
+  })
+  .catch(() => {});
+</script>
+</body>
+</html>
