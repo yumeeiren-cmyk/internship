@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>實習廠商探索｜時尚造型事業系 校外實習媒合平台</title>
+  <meta name="description" content="探索臺北城市科技大學時尚造型事業系校外實習合作企業，依產業類別、品牌及公司名稱搜尋實習單位。">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/design-system.css">
+  <style>
+    .explore-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end;margin:24px 0 18px;padding:20px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm)}
+    .search-box{position:relative}.search-box input{padding-left:43px}.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:1.05rem}
+    .tool-action{display:flex;gap:8px;align-items:center}.result-status{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:17px 0 13px}.result-status p{margin:0}.result-status strong{color:var(--teal)}
+    .company-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}.company-card{position:relative;display:flex;flex-direction:column;min-height:246px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}.company-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover);border-color:#afc2be}.company-main{display:flex;flex-direction:column;flex:1;padding:20px;text-decoration:none}.company-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.company-no{color:var(--gold-dark);font-weight:900;font-size:.82rem;letter-spacing:.05em}.company-category{max-width:64%;padding:3px 9px;border-radius:999px;color:var(--teal);background:var(--info-bg);font-size:.75rem;font-weight:800;text-align:right}.company-card h2{margin:20px 0 7px;color:var(--teal);font-family:var(--font-serif);font-size:1.3rem;line-height:1.35}.company-name{min-height:2.8em;margin:0;color:var(--muted);font-size:.88rem}.company-link{margin-top:auto;padding-top:19px;color:var(--gold-dark);font-weight:900;font-size:.88rem}.company-actions{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);background:var(--surface)}.company-actions a,.company-actions button{min-height:45px;border:0;background:transparent;color:var(--teal);font-weight:800;font-size:.82rem;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px}.company-actions>*+*{border-left:1px solid var(--line)}.company-actions a:hover,.company-actions button:hover{background:#edf5f3}.company-actions button[disabled]{color:#879491}.empty-state{grid-column:1/-1;padding:52px 22px;text-align:center;background:#fff;border:1px dashed var(--line-strong);border-radius:var(--radius-lg)}.empty-state h2{color:var(--teal);margin:0 0 6px;font-family:var(--font-serif)}.empty-state p{color:var(--muted);margin:0 0 17px}.loading-card{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted)}
+    .student-cta{margin-top:36px;padding:25px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#fff}.student-cta h2{margin:0 0 5px;font-family:var(--font-serif)}.student-cta p{margin:0;color:#dce9e7}.student-cta .btn{flex:none;background:#fff;color:var(--teal);border-color:#fff}
+    @media(max-width:920px){.company-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:680px){.explore-tools{grid-template-columns:1fr}.tool-action .btn{width:100%}.company-grid{grid-template-columns:1fr}.student-cta{align-items:flex-start;flex-direction:column}.student-cta .btn{width:100%}}
+  </style>
+</head>
+<body>
+<header class="site">
+  <div class="eyebrow">OUR PARTNERS</div>
+  <h1>實習廠商探索</h1>
+  <p>探索產業・比較條件・找到適合自己的實習方向</p>
+</header>
+
+<nav class="site" aria-label="主要導覽">
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="companies.html" class="on" aria-current="page">實習廠商探索</a></li>
+    <li><a href="process.html">媒合流程</a></li>
+    <li><a href="student.html">學生志願選填</a></li>
+    <li><a href="results.html">媒合成果</a></li>
+    <li><a href="join.html">廠商合作登記</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section aria-labelledby="explore-title">
+    <div class="eyebrow">EXPLORE COMPANIES</div>
+    <h2 class="sec" id="explore-title" style="margin-top:5px">合作企業一覽</h2>
+    <p class="sec-note">可使用關鍵字搜尋品牌或公司名稱，也可依產業類別快速篩選。</p>
+
+    <div class="explore-tools">
+      <div class="field" style="margin:0">
+        <label for="searchInput">搜尋實習廠商</label>
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" autocomplete="off" placeholder="輸入品牌、公司名稱或產業類別" aria-describedby="searchHint">
+        </div>
+        <span class="hint" id="searchHint">例如：hair、美髮、美容、醫美或品牌名稱</span>
+      </div>
+      <div class="tool-action"><button id="clearSearch" type="button" class="btn" hidden>清除搜尋</button></div>
+    </div>
+
+    <div class="filters" id="filters" aria-label="依產業類別篩選"></div>
+    <div class="result-status" aria-live="polite">
+      <p id="count"><strong>正在載入合作廠商資料…</strong></p>
+      <a class="btn" href="student.html">前往志願選填</a>
+    </div>
+    <div class="company-grid" id="list"><div class="loading-card">資料載入中…</div></div>
+  </section>
+
+  <section class="student-cta" aria-label="學生志願選填入口">
+    <div><div class="eyebrow" style="color:#e8d9b7">READY TO CHOOSE</div><h2>已經找到適合的實習方向？</h2><p>完成企業比較後，前往學生志願選填頁建立第一、第二及第三志願。</p></div>
+    <a class="btn" href="student.html">開始填寫志願 →</a>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="rule"><span>◆</span></div>
+  臺北城市科技大學　時尚造型事業系　校外實習媒合平台<br>
+  課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授
+</footer>
+
+<script>
+(() => {
+  'use strict';
+  let all = [];
+  let currentCategory = '';
+  let keyword = '';
+  const listEl = document.getElementById('list');
+  const countEl = document.getElementById('count');
+  const filtersEl = document.getElementById('filters');
+  const searchInput = document.getElementById('searchInput');
+  const clearButton = document.getElementById('clearSearch');
+
+  const esc = value => String(value == null ? '' : value)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  function normalize(value) {
+    return String(value == null ? '' : value).trim().toLocaleLowerCase('zh-Hant-TW');
+  }
+
+  function displayNumber(company, index) {
+    const raw = company.no ?? company.seq ?? (index + 1);
+    const value = String(raw).replace(/^0+/, '') || String(raw);
+    return /^\d+$/.test(value) ? value.padStart(2, '0') : value;
+  }
+
+  function filteredCompanies() {
+    return all.filter(company => {
+      const matchesCategory = !currentCategory || company.category === currentCategory;
+      const haystack = normalize([company.brand, company.company, company.category].filter(Boolean).join(' '));
+      const matchesKeyword = !keyword || haystack.includes(keyword);
+      return matchesCategory && matchesKeyword;
+    });
+  }
+
+  function draw() {
+    const items = filteredCompanies();
+    const parts = [];
+    if (currentCategory) parts.push(currentCategory);
+    if (keyword) parts.push('搜尋「' + searchInput.value.trim() + '」');
+    countEl.innerHTML = '<strong>' + esc(parts.length ? parts.join('・') : '全部合作廠商') + '</strong>　共 ' + items.length + ' 家';
+    clearButton.hidden = !keyword;
+
+    if (!items.length) {
+      listEl.innerHTML = '<div class="empty-state"><h2>找不到符合條件的企業</h2><p>請調整搜尋文字，或切換至其他產業類別。</p><button type="button" class="btn btn-primary" id="resetAll">顯示全部企業</button></div>';
+      document.getElementById('resetAll').addEventListener('click', resetAll);
+      return;
+    }
+
+    listEl.innerHTML = items.map((company, index) => {
+      const id = encodeURIComponent(company.id || '');
+      const brand = company.brand || company.name || company.company || '未命名企業';
+      const companyName = company.company && company.company !== brand ? company.company : '點選查看完整實習資訊';
+      return '<article class="company-card">' +
+        '<a class="company-main" href="c/?id=' + id + '" aria-label="查看 ' + esc(brand) + ' 實習資訊">' +
+          '<div class="company-top"><span class="company-no">' + esc(displayNumber(company, all.indexOf(company))) + '</span><span class="company-category">' + esc(company.category || '其他') + '</span></div>' +
+          '<h2>' + esc(brand) + '</h2>' +
+          '<p class="company-name">' + esc(companyName) + '</p>' +
+          '<span class="company-link">查看實習資訊 →</span>' +
+        '</a>' +
+        '<div class="company-actions">' +
+          '<a href="c/?id=' + id + '">企業專頁</a>' +
+          '<button type="button" disabled title="志願連動功能將於下一階段開放">♡ 加入志願</button>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+  }
+
+  function buildFilters() {
+    const categories = [];
+    all.forEach(company => {
+      if (company.category && !categories.includes(company.category)) categories.push(company.category);
+    });
+    const options = [['', '全部']].concat(categories.map(category => [category, category]));
+    filtersEl.innerHTML = '';
+    options.forEach(([value, label]) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'chip' + (value === currentCategory ? ' on' : '');
+      button.setAttribute('aria-pressed', value === currentCategory ? 'true' : 'false');
+      const total = value ? all.filter(company => company.category === value).length : all.length;
+      button.textContent = label + ' ' + total;
+      button.addEventListener('click', () => {
+        currentCategory = value;
+        buildFilters();
+        draw();
+      });
+      filtersEl.appendChild(button);
+    });
+  }
+
+  function resetAll() {
+    currentCategory = '';
+    keyword = '';
+    searchInput.value = '';
+    buildFilters();
+    draw();
+    searchInput.focus();
+  }
+
+  let searchTimer;
+  searchInput.addEventListener('input', event => {
+    window.clearTimeout(searchTimer);
+    searchTimer = window.setTimeout(() => {
+      keyword = normalize(event.target.value);
+      draw();
+    }, 120);
+  });
+  clearButton.addEventListener('click', () => {
+    keyword = '';
+    searchInput.value = '';
+    draw();
+    searchInput.focus();
+  });
+
+  fetch('data/companies.json')
+    .then(response => {
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    })
+    .then(data => {
+      all = Array.isArray(data) ? data : (Array.isArray(data.companies) ? data.companies : []);
+      if (!all.length) throw new Error('沒有可顯示的企業資料');
+      buildFilters();
+      draw();
+    })
+    .catch(error => {
+      console.error(error);
+      countEl.innerHTML = '<strong>廠商資料載入失敗</strong>';
+      filtersEl.innerHTML = '';
+      listEl.innerHTML = '<div class="empty-state"><h2>目前無法載入合作企業</h2><p>請確認 data/companies.json 路徑與檔案格式是否正確，再重新整理頁面。</p><button type="button" class="btn btn-primary" onclick="location.reload()">重新載入</button></div>';
+    });
+})();
+</script>
+</body>
+</html>
