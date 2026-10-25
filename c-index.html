@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="時尚造型事業系校外實習合作企業個別實習資訊。">
+<title>企業實習資訊｜時尚造型事業系 校外實習媒合平台</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/design-system.css">
+<style>
+.company-hero{background:linear-gradient(135deg,var(--teal-deep),var(--teal));color:#fff;border-bottom:3px solid var(--gold)}
+.company-hero-inner{width:min(var(--container),calc(100% - 44px));margin:auto;padding:38px 0 34px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}.company-hero .eyebrow{color:#e8d9b7}.company-hero h1{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3rem);line-height:1.15;margin:7px 0}.corp-name{color:#dce9e7;margin:0}.hero-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.hero-meta span{padding:5px 10px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.08);font-size:.78rem}.hero-no{font:700 3rem var(--font-serif);color:rgba(232,217,183,.85)}
+.detail-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px}.details{display:grid;gap:16px}.info-card h2,.side-card h2{font-family:var(--font-serif);color:var(--teal);font-size:1.25rem;margin:0 0 14px}.info-list{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 16px;margin:0}.info-list dt{color:var(--muted);font-size:.86rem}.info-list dd{margin:0;font-weight:650;white-space:pre-line;overflow-wrap:anywhere}.details .empty-value{color:#9aa5a3;font-weight:400}.side{align-self:start;position:sticky;top:74px;display:grid;gap:14px}.side-card{padding:20px}.side-actions{display:grid;gap:9px}.side-actions .btn{width:100%}.preference-box{border-top:3px solid var(--gold)}.preference-box p{margin:0 0 13px;color:var(--muted);font-size:.86rem}.back-row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:19px}.state-box{text-align:center;padding:52px 22px}.state-box h1{color:var(--teal);font-family:var(--font-serif)}
+@media(max-width:860px){.detail-layout{grid-template-columns:1fr}.side{position:static;grid-template-columns:1fr 1fr}.company-hero-inner{grid-template-columns:1fr}.hero-no{display:none}}
+@media(max-width:600px){.company-hero-inner{width:calc(100% - 28px)}.side{grid-template-columns:1fr}.info-list{grid-template-columns:1fr;gap:2px}.info-list dd{margin-bottom:9px}.back-row .btn{width:100%}}
+</style>
+</head>
+<body>
+<nav class="site" aria-label="主要導覽"><ul>
+<li><a href="../index.html">首頁</a></li><li><a href="../companies.html" class="on">實習廠商探索</a></li><li><a href="../process.html">媒合流程</a></li><li><a href="../student.html">學生志願選填</a></li><li><a href="../results.html">媒合成果</a></li><li><a href="../join.html">廠商合作登記</a></li>
+</ul></nav>
+<div id="loading" class="state-box"><h1>企業資料載入中…</h1><p class="muted">正在讀取合作企業實習資訊。</p></div>
+<div id="error" class="state-box" hidden><h1>找不到企業資料</h1><p id="errorText" class="muted">請確認企業連結是否正確。</p><a class="btn btn-primary" href="../companies.html">返回實習廠商探索</a></div>
+<div id="content" hidden>
+<header class="company-hero"><div class="company-hero-inner"><div><div class="eyebrow">INTERNSHIP PARTNER</div><h1 id="brand"></h1><p class="corp-name" id="company"></p><div class="hero-meta"><span id="category"></span><span id="identity" hidden></span></div></div><div class="hero-no" id="number"></div></div></header>
+<main>
+<div class="back-row"><a class="btn" href="../companies.html">← 返回實習廠商探索</a><a class="btn" href="../student.html">前往學生志願選填 →</a></div>
+<div class="detail-layout"><div class="details">
+<section class="card info-card"><div class="eyebrow">INTERNSHIP PROFILE</div><h2>實習基本資訊</h2><dl class="info-list" id="basic"></dl></section>
+<section class="card info-card"><div class="eyebrow">WORK CONTENT</div><h2>工作內容與實習條件</h2><dl class="info-list" id="work"></dl></section>
+<section class="card info-card"><div class="eyebrow">WHAT THEY VALUE</div><h2>期待特質與提醒</h2><dl class="info-list" id="traits"></dl></section>
+</div><aside class="side">
+<section class="card side-card preference-box"><div class="eyebrow">YOUR PREFERENCE</div><h2>考慮這家企業？</h2><p>確認工作內容與條件後，可前往學生志願選填安排第一、第二及第三志願。</p><div class="side-actions"><a id="chooseLink" class="btn btn-primary" href="../student.html">加入志願選擇</a><a class="btn" href="../companies.html">繼續探索其他企業</a></div></section>
+<section class="card side-card"><div class="eyebrow">REMINDER</div><h2>選填前請確認</h2><p class="muted" style="margin:0">實習資訊可能依企業當年度安排調整；正式選填與媒合作業仍依系所公告及企業確認內容辦理。</p></section>
+</aside></div>
+</main>
+</div>
+<footer class="site"><div class="rule"><span>◆</span></div>臺北城市科技大學　時尚造型事業系　校外實習媒合平台<br>課程：時尚產業就業知能講座　｜　指導老師：洪啟穎 助理教授</footer>
+<script>
+(()=>{'use strict';
+const qs=new URLSearchParams(location.search), id=qs.get('id');
+const $=x=>document.getElementById(x); const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+function first(c,keys){for(const k of keys){const v=c[k];if(v!==undefined&&v!==null&&String(v).trim()!=='')return v}return ''}
+function rows(target,items){$(target).innerHTML=items.map(([label,val])=>{const text=String(val??'').trim();return '<dt>'+esc(label)+'</dt><dd class="'+(text?'':'empty-value')+'">'+esc(text||'目前未提供')+'</dd>'}).join('')}
+function showError(text){$('loading').hidden=true;$('error').hidden=false;$('errorText').textContent=text}
+if(!id){showError('此連結缺少企業識別碼 id。請由實習廠商探索頁重新進入。');return}
+fetch('../data/companies.json').then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{const all=Array.isArray(data)?data:(data.companies||[]);const c=all.find(x=>String(x.id)===id);if(!c){showError('目前資料庫中找不到這家企業，企業識別碼：'+id);return}
+$('brand').textContent=first(c,['brand','name','company'])||'未命名企業'; const corp=first(c,['company']);$('company').textContent=corp&&corp!==$('brand').textContent?corp:'';$('category').textContent=first(c,['category'])||'其他';const ident=first(c,['identity','internshipIdentity','employeeType']);if(ident){$('identity').textContent=ident;$('identity').hidden=false}$('number').textContent=String(first(c,['no','seq'])||'').padStart(2,'0');document.title=$('brand').textContent+'｜企業實習資訊';
+rows('basic',[["實習身分",first(c,['identity','internshipIdentity','employeeType'])],["實習地點",first(c,['location','address','workLocation'])],["工作時間",first(c,['hours','workHours','time'])],["休假方式",first(c,['vacation','daysOff','holiday'])],["薪資待遇",first(c,['salary','pay','compensation'])]]);
+rows('work',[["工作內容",first(c,['job','jobContent','workContent','content'])],["保險／勞退",first(c,['insurance'])],["支援他店／活動",first(c,['supportOther','support'])],["另行工作合約",first(c,['extraContract','contract'])],["其他條件",first(c,['condition','conditions','benefits'])]]);
+rows('traits',[["期待特質",first(c,['traits','trait','expectation','qualities'])],["注意事項",first(c,['notes','note','reminder','notice'])]]);
+$('chooseLink').href='../student.html?company='+encodeURIComponent(c.id);$('loading').hidden=true;$('content').hidden=false;
+}).catch(err=>{console.error(err);showError('企業資料載入失敗，請確認 data/companies.json 是否可正常讀取。')});
+})();
+</script>
+</body></html>
